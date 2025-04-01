@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Descargar el modelo si no está
+echo "[INFO] Descargando modelo llama3 si no está..."
 ollama pull llama3 || true
 
-# Ahora arrancar el servidor
+echo "[INFO] Iniciando servidor Ollama..."
 exec ollama serve
