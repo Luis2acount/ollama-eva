@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: ollama-eva
+    env: docker
+    plan: free
+    autoDeploy: true
+    region: oregon
+    healthCheckPath: /
+    dockerfilePath: Dockerfile
+    envVars: []
