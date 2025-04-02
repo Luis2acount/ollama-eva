@@ -1,18 +1,10 @@
-FROM debian:bookworm-slim
+FROM python:3.10-slim
 
-# Permitir acceso desde cualquier IP
-ENV OLLAMA_HOST=0.0.0.0
+WORKDIR /app
 
-# Instalar dependencias básicas
-RUN apt-get update && \
-    apt-get install -y curl ca-certificates gnupg && \
-    rm -rf /var/lib/apt/lists/*
+COPY app.py /app/
+RUN pip install flask requests
 
-# Instalar Ollama
-RUN curl -fsSL https://ollama.com/install.sh | sh
+EXPOSE 8000
 
-# Exponer el puerto por defecto
-EXPOSE 11434
-
-# Iniciar el servidor Ollama directamente
-CMD ["ollama", "serve"]
+CMD ["python", "app.py"]
