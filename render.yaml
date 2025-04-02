@@ -5,9 +5,4 @@ services:
     plan: free
     region: oregon
     dockerfilePath: ./Dockerfile
-    buildCommand: ""  # No es necesario para Docker
-    startCommand: "./start.sh"
-    envVars:
-      - key: OLLAMA_HOST
-        value: 0.0.0.0
     autoDeploy: true
