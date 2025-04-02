@@ -1,10 +1,8 @@
-FROM python:3.10-slim
+FROM ollama/ollama:latest
 
-WORKDIR /app
+# Exponer el puerto predeterminado de Ollama
+EXPOSE 11434
 
-COPY app.py /app/
-RUN pip install flask requests
-
-EXPOSE 8000
-
-CMD ["python", "app.py"]
+# Comando para iniciar el servidor de Ollama
+ENTRYPOINT ["ollama"]
+CMD ["serve"]
