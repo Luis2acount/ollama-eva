@@ -1,15 +1,16 @@
 #!/bin/bash
 
-# Iniciar ollama en segundo plano
-echo "[INFO] Iniciando servidor Ollama en segundo plano..."
+# Start Ollama in background
+echo "[INFO] Iniciando Ollama..."
 ollama serve &
 
-# Esperar unos segundos para que arranque
+# Espera a que Ollama levante (puedes ajustar segundos si es necesario)
 sleep 5
 
-# Descargar modelo
-echo "[INFO] Descargando modelo llama3..."
-ollama pull llama3 || true
+# Descarga el modelo si no está
+echo "[INFO] Verificando modelo llama3..."
+ollama pull llama3 || echo "[WARN] No se pudo cargar llama3"
 
-# Mantener el servidor activo en foreground
-wait
+# Inicia Flask
+echo "[INFO] Levantando servidor Flask..."
+python3 app.py

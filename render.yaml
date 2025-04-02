@@ -3,8 +3,11 @@ services:
     name: ollama-eva
     env: docker
     plan: free
-    autoDeploy: true
     region: oregon
-    healthCheckPath: /
-    dockerfilePath: Dockerfile
-    envVars: []
+    dockerfilePath: ./Dockerfile
+    buildCommand: ""  # No es necesario para Docker
+    startCommand: "./start.sh"
+    envVars:
+      - key: OLLAMA_HOST
+        value: 0.0.0.0
+    autoDeploy: true
