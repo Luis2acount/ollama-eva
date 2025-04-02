@@ -1,12 +1,11 @@
-FROM ollama/ollama:latest
+FROM debian:bullseye  # o la base que estés usando
 
-EXPOSE 11434
+RUN apt-get update && apt-get install -y curl
 
-# Copiar el script de entrada
+# Instalar Ollama (si es necesario)
+# COPY ollama etc...
+
 COPY entrypoint.sh /entrypoint.sh
-
-# Dar permisos de ejecución al script
 RUN chmod +x /entrypoint.sh
 
-# Usar el script como punto de entrada
 ENTRYPOINT ["/entrypoint.sh"]
