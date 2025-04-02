@@ -1,11 +1,12 @@
 FROM ollama/ollama:latest
 
-# Exponer el puerto predeterminado de Ollama
 EXPOSE 11434
 
-# Descargar el modelo llama3 durante la construcción del contenedor
-RUN ollama pull llama3
+# Copiar el script de entrada
+COPY entrypoint.sh /entrypoint.sh
 
-# Comando para iniciar el servidor de Ollama
-ENTRYPOINT ["ollama"]
-CMD ["serve"]
+# Dar permisos de ejecución al script
+RUN chmod +x /entrypoint.sh
+
+# Usar el script como punto de entrada
+ENTRYPOINT ["/entrypoint.sh"]
